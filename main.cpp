@@ -43,7 +43,7 @@ int main() {
 
 
     int m;
-    std::cout << "Input m = ";
+    std::cout << "3. Input m = ";
     std::cin >> m;
     std::vector<int> vec1(m);
     for (int i=0; i<=m-1; i++) {
@@ -73,7 +73,7 @@ int main() {
 
 
     std::string sus = "";
-    std::cout<< "Input your word: ";
+    std::cout<< "4. Input your word: ";
     std::cin >> sus;
     int kol = 0;
     for (int i = 0; i <= sus.size()-1;i++){
