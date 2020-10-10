@@ -6,13 +6,14 @@
 
 int main() {
     std::cout<< "1. Your random digits:"<< std::endl;
-    int s[9];
+    int s[10];
     std::srand(std::time(nullptr));
     for (int i=0; i<=9; i++){
         s[i] = (std::rand()%21-10);
     }
     std::cout<<s[0] << ' '<< s[3] << ' '<< s[8]<< ';' << std::endl;
-
+    int sum = s[0]*s[0] + s[3]*s[3] + s[8]*s[8];
+    std::cout << "Sum of squares is " << sum << std::endl;
 
 
 
@@ -35,7 +36,7 @@ int main() {
     std::cin >> k1;
     std::cout << "Input k2 = ";
     std::cin >> k2;
-    int sum = 0;
+    sum = 0;
     for (int i=k1; i<=k2; i++){
         sum = sum + arr[i];
     }
@@ -74,36 +75,48 @@ int main() {
 
 
 
-    std::string sus = "";
-    std::cout<< "4. Input your word: ";
-    std::cin >> sus;
+    std::string sus;
+    std::cout<< "4. Input your text: ";
+    std::cin.ignore();
+    std::getline(std::cin, sus);
     int kol = 0;
-    for (int i = 0; i <= sus.size()-1; i++){
+    for (int i = 0; i <= sus.length()-1; i++){
         if (sus[i] == 's' ) {
             ++kol;
         }
     }
-    std::cout << "Length of string is " << sus.size() << "; Proporsion of letter s is " << kol << "/" << sus.size() << std::endl;
-    int l1,l2;
+    std::cout << "Length of string is " << sus.length() << "; Proporsion of letter s is " << kol << "/" << sus.size() << std::endl;
+    int l1 = 0;
     std::cout << "Input l1 = ";
     std::cin >> l1;
 
+    int l2 = 0;
     std::cout << "Input l2 = ";
     std::cin >> l2;
 
-    std::cout << "Your past is " <<  sus.substr(l1,l2-l1+1) << std::endl;
+    std::cout << "Your past is " <<  sus.substr(l1, l2-l1+1) << std::endl;
 
-    std::string sas = "";
+    std::string word;
     std::cout << "Input your word: ";
-    std::cin >> sas;
-    std::string sas1 = "Can you can a can as a canner can can a can?";
-    for (int i = 0; i<=sas1.size()-1; i++){
-        if ((sas1.substr(i,3) == "can") || (sas1.substr(i,3) == "Can")) {
-            sas1.erase(i,3);
-            sas1.insert(i, sas);
+    std::cin >> word;
+    std::string s1 = "Can you can a can as a canner can can a can ? ";
+    std::cout << "Your text: Can you can a can as a canner can can a can?" << std::endl;
+    std::string s2;
+    std::string help_s;
+    while(s1 != ""){
+        help_s = s1.substr(0, s1.find(' '));
+        if((help_s == "can") || (help_s == "Can")){
+            s2+= word + ' ';
+        } else {
+            s2+= help_s + ' ';
         }
+        s1.erase(0, s1.find(' ')+1);
     }
-    std::cout << sas1 << std::endl;
+    std::cout << "Your new text: ";
+    int len = s2.length();
+    s2.erase(len - 1 ,1);
+    s2.erase(len - 3, 1);
+    std::cout << s2 << std::endl;
 
     return 0;
 }
